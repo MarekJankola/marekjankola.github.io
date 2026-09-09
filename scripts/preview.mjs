@@ -15,10 +15,15 @@ await stat(path.join(root, 'index.html')).catch(() => {
   throw new Error('No built homepage. Run bundle exec jekyll build first.');
 });
 
+const homepage = await readFile(path.join(root, 'index.html'), 'utf8');
+const canonical = homepage.match(/<link rel="canonical" href="([^"]+)"/);
+const basePath = canonical ? new URL(canonical[1]).pathname.replace(/\/$/, '') : '';
+
 const server = http.createServer(async (req, res) => {
   if (!['GET', 'HEAD'].includes(req.method)) { res.writeHead(405); res.end(); return; }
   try {
-    const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
+    let pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
+    if (basePath && (pathname === basePath || pathname.startsWith(basePath + '/'))) pathname = pathname.slice(basePath.length) || '/';
     let file = path.resolve(root, '.' + pathname);
     if (file !== root && !file.startsWith(root + path.sep)) { res.writeHead(403); res.end(); return; }
     if ((await stat(file)).isDirectory()) file = path.join(file, 'index.html');
