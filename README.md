@@ -1,101 +1,123 @@
-# Academic Pages
-**Academic Pages is a GitHub Pages template for personal and professional portfolio-oriented websites.**
+# Marek Jankola — academic website
 
-![Academic Pages template example](images/themes/homepage-light.png "Academic Pages template example")
+A small, readable Jekyll site hosted on GitHub Pages. The original Academic Pages
+framework is retained; a dedicated profile layout gives this site its appearance.
 
-# Getting Started
+## Where to edit
 
-1. Register a GitHub account if you don't have one and confirm your e-mail (required!)
-1. Click the "Use this template" button in the top right.
-1. On the "New repository" page, enter your public repository name as "[your GitHub username].github.io", which will also be your website's URL.
-1. Edit site-wide configuration in `_config.yml` and double check that the `url` is the one that you just selected in the previous step and that `repository` reflects the correct path for your repository.
-1. Add your site content, upload any files (like PDFs, .zip files, etc.) to the `files/` directory. They will appear at https://[your GitHub username].github.io/files/example.pdf.
-1. Check status by going to the repository settings, in the "GitHub pages" section
-1. (Optional) Use the Jupyter notebooks or python scripts in the `markdown_generator` folder to generate markdown files for publications and talks from a TSV file.
+| What you want to change | File |
+| --- | --- |
+| Biography and homepage section headings | `_pages/about.md` |
+| Photo, caption, email, social links, research interests | `_data/profile.yml` |
+| Publications and their expandable abstracts | One Markdown file per paper in `_publications/` |
+| CV | `_pages/cv.md` |
+| Colours, fonts, spacing and mobile layout | `assets/css/profile.css` |
+| Page structure and metadata | `_layouts/profile.html` |
+| Browser title, description and site settings | `_config.yml` |
 
-See more info at https://academicpages.github.io/
+For everyday updates, edit a file on GitHub using the pencil button, then choose
+**Commit changes**. Once Pages is enabled, every commit to `master` rebuilds and
+publishes the website. Your content is rendered into HTML, so visitors can read
+it without JavaScript. The Abstract controls use native HTML `details` elements.
 
-### Additional Tutorials
+## Finish the GitHub Pages setup
 
-Additional tutorials for working with the Academic Pages template can be found at the following sites:
-- https://jayrobwilliams.com/posts/2020/06/academic-website/
+1. In this repository, open **Settings → General**. Rename the repository to
+   **`MarekJankola.github.io`** (no dot between Marek and Jankola).
+2. Open **Settings → Pages**. Under **Build and deployment → Source**, select
+   **GitHub Actions**.
+3. Open **Actions → Build and publish website → Run workflow** on `master`.
+4. Wait for both the build and deploy jobs to finish successfully. GitHub shows
+   the published URL in **Settings → Pages** and in the deployment job.
 
-## Running locally
+The intended address is **https://marekjankola.github.io/**.
+The workflow calculates the correct base path from the repository name, so it
+also works if you keep the current repository name and use a project-site URL.
+After renaming, update the `repository` value in `_config.yml` to
+`MarekJankola/MarekJankola.github.io`; it is descriptive metadata, and the build
+already calculates paths from GitHub's actual repository name.
 
-When you are initially working on your website, it is very useful to be able to preview the changes locally before pushing them to GitHub. To work locally you will need to:
+The GitHub connection used for the initial setup can edit repository files but
+has no exposed tool for renaming repositories or configuring Pages. Those two
+settings need to be changed by the repository owner.
 
-1. Clone the repository and made updates as detailed above.
+## Add a publication
 
-### Using a different IDE
-1. Make sure you have ruby-dev, bundler, and nodejs installed
-    
-    On most Linux distributions and [Windows Subsystem Linux](https://learn.microsoft.com/en-us/windows/wsl/about) the command is:
-    ```bash
-    sudo apt install ruby-dev ruby-bundler nodejs
-    ```
-    If you see error `Unable to locate package ruby-bundler`, `Unable to locate package nodejs `, run the following:
-    ```bash
-    sudo apt update && sudo apt upgrade -y
-    ```
-    then try running `sudo apt install ruby-dev ruby-bundler nodejs` again.
+Create `_publications/YYYY-short-title.md`. Copy the existing paper as a guide:
 
-    On MacOS the commands are:
-    ```bash
-    brew install ruby
-    brew install node
-    gem install bundler
-    ```
-1. Run `bundle install` to install ruby dependencies. If you get errors, delete Gemfile.lock and try again.
+```yaml
+---
+title: "Your paper title"
+date: YYYY-MM-DD
+authors: "**Marek Jankola**, Coauthor One, and Coauthor Two"
+venue: "Journal or conference"
+citation_detail: "Volume, article number"
+paperurl: https://arxiv.org/abs/YOUR-ID
+arxiv: https://arxiv.org/abs/YOUR-ID
+doi: YOUR-DOI
+# code: https://github.com/USER/REPOSITORY
+---
 
-    If you see file permission error like `Fetching bundler-2.6.3.gem ERROR:  While executing gem (Gem::FilePermissionError) You don't have write permissions for the /var/lib/gems/3.2.0 directory.` or `Bundler::PermissionError: There was an error while trying to write to /usr/local/bin.`
-    Install Gems Locally (Recommended):
-    ```bash
-    bundle config set --local path 'vendor/bundle'
-    ```
-    then try run `bundle install` again. If succeeded, you should see a folder called `vendor` and `.bundle`.
-
-1. Run `jekyll serve -l -H localhost` to generate the HTML and serve it from `localhost:4000` the local server will automatically rebuild and refresh the pages on change to Markdown (*.md) and HTML files, while changes to the core template and configuration (i.e., `_config.yml`) will require stopping and restarting Jekyll.
-    You may also try `bundle exec jekyll serve -l -H localhost` to ensure jekyll to use specific dependencies on your own local machine.
-
-If you are running on Linux it may be necessary to install some additional dependencies prior to being able to run locally: `sudo apt install build-essential gcc make`
-
-## Using Docker
-
-Working from a different OS, or just want to avoid installing dependencies? You can use the provided `Dockerfile` to build a container that will run the site for you if you have [Docker](https://www.docker.com/) installed.
-
-You can build and execute the container by running the following command in the repository:
-
-```bash
-chmod -R 777 .
-docker compose up
+Paste the abstract here. Ordinary Markdown is supported.
 ```
 
-You should now be able to access the website from `localhost:4000`.
+Use the actual publication date (or the preprint date for a preprint). Files are
+listed newest first. Omit optional links that do not exist. Add Markdown emphasis
+with `*italics*` or `**bold**`; use Unicode symbols for simple inline mathematics.
+The current layout does not load a TeX renderer. If you later write mathematical
+blog posts, MathJax or KaTeX can be added to that layout explicitly.
 
-### Using the DevContainer in VS Code
+The homepage and CV share this same publication list, so you only edit each paper
+once. Preprint and journal versions of the same work belong in one entry.
 
-If you are using [Visual Studio Code](https://code.visualstudio.com/) you can use the [Dev Container](https://code.visualstudio.com/docs/devcontainers/containers) that comes with this Repository. Normally VS Code detects that a development container configuration is available and asks you if you want to use the container. If this doesn't happen you can manually start the container by **F1->DevContainer: Reopen in Container**. This restarts your VS Code in the container and automatically hosts your academic page locally on http://localhost:4000. All changes will be updated live to that page after a few seconds.
+## Photo and CV
 
-# Maintenance
+- `me_photo.jpg` is the original supplied image (4005 × 3816 pixels). The site
+  preserves its aspect ratio with `width: 100%; height: auto`; no face editing or
+  permanent crop is applied. Replacing it with another file at the same path
+  updates the photo. If its proportions change, update the width/height attributes
+  in `_includes/profile-sidebar.html` to prevent layout shift.
+- The CV link opens `_pages/cv.md`, a concise public academic CV assembled from
+  the supplied academic details. The older application PDFs are not included.
+  The page has print styling, so a browser's **Print → Save as PDF** works too.
+- To use a finished PDF later, add it under `assets/documents/cv.pdf`, and set
+  `cv: /assets/documents/cv.pdf` in `_data/profile.yml`.
 
-Bug reports and feature requests to the template should be [submitted via GitHub](https://github.com/academicpages/academicpages.github.io/issues/new/choose). For questions concerning how to style the template, please feel free to start a [new discussion on GitHub](https://github.com/academicpages/academicpages.github.io/discussions).
+## Preview locally
 
-This repository was forked (then detached) by [Stuart Geiger](https://github.com/staeiou) from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/), which is © 2016 Michael Rose and released under the MIT License (see LICENSE.md). It is currently being maintained by [Robert Zupko](https://github.com/rjzupkoii), and additional maintainers would be welcome.
+Install Ruby and Bundler, then run from the repository directory:
 
-## Bugfixes and enhancements
+```bash
+bundle install
+bundle exec jekyll serve --livereload
+```
 
-If you have bugfixes and enhancements that you would like to submit as a pull request, you will need to [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) this repository as opposed to using it as a template. This will also allow you to [synchronize your copy](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork) of the template to your fork as well.
+Open the local address printed by Jekyll. Restart after editing `_config.yml`.
+You do not need Node or npm for this normal Jekyll editing workflow.
 
-Unfortunately, one logistical issue with a template theme like Academic Pages that makes it a little tricky to get bug fixes and updates to the core theme. If you use this template and customize it, you will probably get merge conflicts if you attempt to synchronize, although [rebasing](https://git-scm.com/docs/git-rebase) the changes from this template will work along with manually [cherry picking](https://git-scm.com/docs/git-cherry-pick) the relevant commits. If you are not comfortable with the Git command line, you can save your various `.yml` configuration files and Markdown files, delete the repository, and fork it again. 
+An optional dependency-free Node server is included for checking an already
+built site (and for the initial automated visual review):
 
----
-<div align="center">
-    
-![pages-build-deployment](https://github.com/academicpages/academicpages.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)
-[![GitHub contributors](https://img.shields.io/github/contributors/academicpages/academicpages.github.io.svg)](https://github.com/academicpages/academicpages.github.io/graphs/contributors)
-[![GitHub release](https://img.shields.io/github/v/release/academicpages/academicpages.github.io)](https://github.com/academicpages/academicpages.github.io/releases/latest)
-[![GitHub license](https://img.shields.io/github/license/academicpages/academicpages.github.io?color=blue)](https://github.com/academicpages/academicpages.github.io/blob/master/LICENSE)
+```bash
+bundle exec jekyll build --strict_front_matter
+npm run dev
+```
 
-[![GitHub stars](https://img.shields.io/github/stars/academicpages/academicpages.github.io)](https://github.com/academicpages/academicpages.github.io)
-[![GitHub forks](https://img.shields.io/github/forks/academicpages/academicpages.github.io)](https://github.com/academicpages/academicpages.github.io/fork)
-</div>
+It serves only `_site/`, never the raw repository. Rebuild and refresh after
+changes. `_site/` is generated output and is not committed.
+
+## Design and provenance
+
+- Warm grey background; dark blue headings; muted blue links with visible
+  keyboard focus; responsive sidebar; no analytics, emojis or external font calls.
+- STIX Two Text is distributed under the SIL Open Font License; see
+  `assets/fonts/STIX-OFL.txt`. The included Academicons and Font Awesome fonts
+  come from the Academic Pages template.
+- The verified publication and abstract come from
+  https://arxiv.org/abs/2512.16021 and https://doi.org/10.1103/b8vm-fz49.
+  Journal metadata was cross-checked against Crossref. Google Scholar could not
+  be read during setup, so this list should be checked against the profile for
+  any additional works.
+- Theme internals in `_sass/`, `_includes/`, `_layouts/` and the original npm
+  scripts are retained for compatibility. The personal layout loads only
+  `assets/css/profile.css`; the old example pages and publications were removed.

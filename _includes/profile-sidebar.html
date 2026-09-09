@@ -1,0 +1,16 @@
+{% assign person = site.data.profile %}
+<aside class="profile-sidebar" aria-label="Photo and contact details">
+  <a class="portrait-link" href="{{ '/' | relative_url }}" aria-label="{{ person.name | escape }} — home">
+    <img class="portrait" src="{{ person.photo | relative_url }}" alt="{{ person.photo_alt | escape }}" width="4005" height="3816" fetchpriority="high" decoding="async">
+  </a>
+  <p class="tagline">{{ person.tagline }}</p>
+  <nav aria-label="Contact and profiles">
+    <ul class="profile-links">
+      <li><a href="mailto:{{ person.email }}"><span class="icon icon-solid" aria-hidden="true">&#xf0e0;</span><span class="email-label">{{ person.email }}</span></a></li>
+      <li><a href="{{ person.scholar }}"><span class="icon icon-academic" aria-hidden="true">&#xe9d4;</span><span>Google Scholar</span></a></li>
+      <li><a href="{{ person.linkedin }}"><span class="icon icon-brand" aria-hidden="true">&#xf08c;</span><span>LinkedIn</span></a></li>
+      <li><a href="{{ person.twitter }}"><span class="icon icon-brand" aria-hidden="true">&#xe61b;</span><span>Twitter / X</span></a></li>
+      {% if person.cv %}<li><a href="{{ person.cv | relative_url }}"><span class="icon icon-regular" aria-hidden="true">&#xf15c;</span><span>CV</span></a></li>{% endif %}
+    </ul>
+  </nav>
+</aside>
