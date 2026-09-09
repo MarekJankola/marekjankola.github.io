@@ -16,35 +16,20 @@ framework is retained; a dedicated profile layout gives this site its appearance
 | Browser title, description and site settings | `_config.yml` |
 
 For everyday updates, edit a file on GitHub using the pencil button, then choose
-**Commit changes**. Once Pages is enabled, every commit to `master` rebuilds and
+**Commit changes**. Every commit to `master` rebuilds and
 publishes the website. Your content is rendered into HTML, so visitors can read
 it without JavaScript. The Abstract controls use native HTML `details` elements.
 
 ## GitHub Pages
 
-The website is deployed at
-**https://marekjankola.github.io/Marek.Jankola.github.io/**.
-Both build and deployment were verified on 9 September 2026.
+The website is deployed at **https://marekjankola.github.io/**.
+The repository is **`MarekJankola/marekjankola.github.io`** and Pages uses the
+**GitHub Actions** source. Every commit to `master` runs **Build and publish
+website**. Check its build and deploy jobs in **Actions** if an update is not
+visible yet. You can also run the workflow manually on `master`.
 
-To shorten the address to **https://marekjankola.github.io/**:
-
-1. In this repository, open **Settings → General**. Rename the repository to
-   **`MarekJankola.github.io`** (no dot between Marek and Jankola).
-2. Open **Settings → Pages**. Under **Build and deployment → Source**, select
-   **GitHub Actions**.
-3. Open **Actions → Build and publish website → Run workflow** on `master`.
-4. Wait for both the build and deploy jobs to finish successfully. GitHub shows
-   the published URL in **Settings → Pages** and in the deployment job.
-
-The workflow calculates the correct base path from the repository name, so it
-also works if you keep the current repository name and use a project-site URL.
-After renaming, update the `repository` value in `_config.yml` to
-`MarekJankola/MarekJankola.github.io`; it is descriptive metadata, and the build
-already calculates paths from GitHub's actual repository name.
-
-The GitHub connection used for the initial setup can edit repository files but
-has no exposed tool for renaming repositories or configuring Pages. Those two
-settings need to be changed by the repository owner.
+The workflow calculates the base path from the repository name. The current
+user-site repository publishes at the root address, with no extra path.
 
 ## Add a publication
 
@@ -131,13 +116,13 @@ changes. `_site/` is generated output and is not committed.
   https://arxiv.org/abs/2512.16021 and https://doi.org/10.1103/b8vm-fz49.
   Journal metadata was cross-checked against Crossref.
 - The two thesis titles, years and institution match the supplied Google Scholar
-  screenshot. The bachelor's thesis record and PDF are at
-  https://dspace.cuni.cz/handle/20.500.11956/182563. The thesis descriptions are
-  labelled **Summary**, based on the supplied CV and the available university
-  abstract excerpt; they are not transcriptions of the original abstracts.
-  The master's thesis record/PDF and both complete original abstracts still need
-  to be supplied. Scholar's live profile rejected this browser's automated
-  requests, so the screenshot is the source for checking the three-item list.
+  screenshot. Marek supplied both original abstracts and direct PDF links.
+  The abstracts are reproduced as supplied, with the spelling correction
+  “timedependent” → “time-dependent” in the bachelor's abstract.
+  The bachelor's university record is
+  https://dspace.cuni.cz/handle/20.500.11956/182563.
+  Scholar's live profile rejected this browser's automated requests, so the
+  screenshot is the source for checking the three-item list.
 - Theme internals in `_sass/`, `_includes/`, `_layouts/` and the original npm
   scripts are retained for compatibility. The personal layout loads only
   `assets/css/profile.css`; the old example pages and publications were removed.
