@@ -121,3 +121,7 @@ changes. `_site/` is generated output and is not committed.
 - Theme internals in `_sass/`, `_includes/`, `_layouts/` and the original npm
   scripts are retained for compatibility. The personal layout loads only
   `assets/css/profile.css`; the old example pages and publications were removed.
+
+## Preview and verification
+
+[Desktop preview](docs/preview-desktop.jpg) · [Verification notes](docs/verification.md)
