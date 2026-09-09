@@ -20,7 +20,13 @@ For everyday updates, edit a file on GitHub using the pencil button, then choose
 publishes the website. Your content is rendered into HTML, so visitors can read
 it without JavaScript. The Abstract controls use native HTML `details` elements.
 
-## Finish the GitHub Pages setup
+## GitHub Pages
+
+The website is deployed at
+**https://marekjankola.github.io/Marek.Jankola.github.io/**.
+Both build and deployment were verified on 9 September 2026.
+
+To shorten the address to **https://marekjankola.github.io/**:
 
 1. In this repository, open **Settings → General**. Rename the repository to
    **`MarekJankola.github.io`** (no dot between Marek and Jankola).
@@ -30,7 +36,6 @@ it without JavaScript. The Abstract controls use native HTML `details` elements.
 4. Wait for both the build and deploy jobs to finish successfully. GitHub shows
    the published URL in **Settings → Pages** and in the deployment job.
 
-The intended address is **https://marekjankola.github.io/**.
 The workflow calculates the correct base path from the repository name, so it
 also works if you keep the current repository name and use a project-site URL.
 After renaming, update the `repository` value in `_config.yml` to
@@ -56,6 +61,7 @@ paperurl: https://arxiv.org/abs/YOUR-ID
 arxiv: https://arxiv.org/abs/YOUR-ID
 doi: YOUR-DOI
 # code: https://github.com/USER/REPOSITORY
+# pdf: https://example.org/your-paper.pdf
 ---
 
 Paste the abstract here. Ordinary Markdown is supported.
@@ -69,6 +75,14 @@ blog posts, MathJax or KaTeX can be added to that layout explicitly.
 
 The homepage and CV share this same publication list, so you only edit each paper
 once. Preprint and journal versions of the same work belong in one entry.
+
+Theses use the same folder and appear in the same list. Put the degree and
+institution in `venue`, link the university record with `paperurl`, and link
+the full text with `pdf`. Omit either link when it is not yet available.
+For a description that is a summary rather than the original abstract, add
+`description_label: Summary`. Remove that field after pasting the original
+abstract. If only a thesis year is known, January 1 can be used as a sorting
+key in `date`; the website displays only the year.
 
 ## Photo and CV
 
@@ -115,9 +129,15 @@ changes. `_site/` is generated output and is not committed.
   come from the Academic Pages template.
 - The verified publication and abstract come from
   https://arxiv.org/abs/2512.16021 and https://doi.org/10.1103/b8vm-fz49.
-  Journal metadata was cross-checked against Crossref. Google Scholar could not
-  be read during setup, so this list should be checked against the profile for
-  any additional works.
+  Journal metadata was cross-checked against Crossref.
+- The two thesis titles, years and institution match the supplied Google Scholar
+  screenshot. The bachelor's thesis record and PDF are at
+  https://dspace.cuni.cz/handle/20.500.11956/182563. The thesis descriptions are
+  labelled **Summary**, based on the supplied CV and the available university
+  abstract excerpt; they are not transcriptions of the original abstracts.
+  The master's thesis record/PDF and both complete original abstracts still need
+  to be supplied. Scholar's live profile rejected this browser's automated
+  requests, so the screenshot is the source for checking the three-item list.
 - Theme internals in `_sass/`, `_includes/`, `_layouts/` and the original npm
   scripts are retained for compatibility. The personal layout loads only
   `assets/css/profile.css`; the old example pages and publications were removed.
