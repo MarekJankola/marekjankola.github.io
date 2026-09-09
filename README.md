@@ -71,6 +71,15 @@ key in `date`; the website displays only the year.
 
 ## Photo and CV
 
+To adjust “Poetic Naturalist.”, edit `--tagline-size` and `--tagline-color` near
+the top of `assets/css/profile.css`. The current values are `1.05rem` and
+`#5e7287`; smaller font sizes make it smaller, and lighter colours make it
+fainter. Mobile screens use 94% of that font size automatically.
+
+In the same stylesheet, `.biography` justifies the introductory paragraphs,
+`.research-interests` centres each wrapped row, `h2` sets section headings, and
+`.publication h3` sets publication titles.
+
 - `me_photo.jpg` is the original supplied image (4005 × 3816 pixels). The site
   preserves its aspect ratio with `width: 100%; height: auto`; no face editing or
   permanent crop is applied. Replacing it with another file at the same path
