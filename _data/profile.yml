@@ -1,0 +1,19 @@
+# Sidebar and contact links. Use full https:// addresses for external profiles.
+name: Marek Jankola
+tagline: Poetic Naturalist.
+photo: /me_photo.jpg
+photo_alt: Marek Jankola smiling outdoors
+email: Marek.Jankola@ista.ac.at
+scholar: https://scholar.google.com/citations?hl=en&user=VmUFhGkAAAAJ
+linkedin: https://www.linkedin.com/in/marek-jankola-125b82221
+twitter: https://x.com/Pejdou
+cv: /cv/
+
+# The small stars between interests are added automatically by the stylesheet.
+interests:
+  - Complex systems
+  - High-dimensional probability
+  - Causality
+  - Machine learning
+  - Identifiability
+  - Learning dynamics

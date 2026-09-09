@@ -1,0 +1,21 @@
+<div class="publications">
+  {% assign papers = site.publications | sort: 'date' | reverse %}
+  {% for paper in papers %}
+  <article class="publication" aria-labelledby="paper-{{ forloop.index }}">
+    <h3 id="paper-{{ forloop.index }}"><a href="{{ paper.paperurl }}">{{ paper.title }}</a></h3>
+    <p class="publication-authors">{{ paper.authors | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+    <p class="publication-venue">{{ paper.venue }}{% if paper.citation_detail %} {{ paper.citation_detail }}{% endif %} <span class="publication-year">({{ paper.date | date: '%Y' }})</span></p>
+    <div class="publication-actions">
+      {% if paper.arxiv %}<a href="{{ paper.arxiv }}">arXiv</a>{% endif %}
+      {% if paper.doi %}<a href="https://doi.org/{{ paper.doi }}">Journal</a>{% endif %}
+      {% if paper.code %}<a href="{{ paper.code }}">Code</a>{% endif %}
+    </div>
+    {% if paper.content != '' %}
+    <details class="abstract">
+      <summary>Abstract<span class="visually-hidden">: {{ paper.title }}</span></summary>
+      <div class="abstract-text">{{ paper.content | markdownify }}</div>
+    </details>
+    {% endif %}
+  </article>
+  {% endfor %}
+</div>
