@@ -39,7 +39,7 @@ jobs:
         with:
           path: _site
   deploy:
-    if: github.event_name != 'pull_request'
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
     needs: build
     runs-on: ubuntu-latest
     permissions:
@@ -49,6 +49,14 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Refuse to publish an outdated commit
+        shell: bash
+        run: |
+          LATEST_COMMIT="$(git ls-remote --exit-code "https://github.com/${GITHUB_REPOSITORY}.git" refs/heads/master | cut -f1)"
+          if [[ "$GITHUB_SHA" != "$LATEST_COMMIT" ]]; then
+            echo "::error::This run uses an outdated commit. Start a new run from Actions > Build and publish website > Run workflow > master."
+            exit 1
+          fi
       - name: Publish to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

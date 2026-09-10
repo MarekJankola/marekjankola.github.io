@@ -26,7 +26,21 @@ The website is deployed at **https://marekjankola.github.io/**.
 The repository is **`MarekJankola/marekjankola.github.io`** and Pages uses the
 **GitHub Actions** source. Every commit to `master` runs **Build and publish
 website**. Check its build and deploy jobs in **Actions** if an update is not
-visible yet. You can also run the workflow manually on `master`.
+visible yet.
+
+To publish the current version manually:
+
+1. Open **Actions → Build and publish website** in the workflow list.
+2. Click **Run workflow**, select **master**, and click **Run workflow** again.
+3. Wait for the build and deploy jobs to succeed.
+
+**Re-run jobs** on an existing run repeats that run's original commit. Re-running
+an older successful run can therefore replace a newer published website with an
+older version. Use **Run workflow → master** to publish the current files.
+
+The deployment now checks that its commit still matches `master` and refuses
+to publish if it is outdated. Runs created before this check was added retain
+their old workflow, so use a fresh run from `master` instead of re-running them.
 
 The workflow calculates the base path from the repository name. The current
 user-site repository publishes at the root address, with no extra path.
