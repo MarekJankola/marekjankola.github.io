@@ -10,7 +10,7 @@ description: "Academic CV of Marek Jankola, PhD student in machine learning at I
 
 ## Education
 
-### PhD in computer science · 2025–present
+### PhD in computer&data science · 2025–present
 
 Institute of Science and Technology Austria (ISTA)<br>
 Advised by [Marco Mondelli](http://marcomondelli.com/) and [Francesco Locatello](https://www.francescolocatello.com/).
