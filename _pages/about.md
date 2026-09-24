@@ -16,7 +16,12 @@ During my studies in theoretical physics, I worked on non-equilibrium thermodyna
 
 {% include profile-interests.html %}
 
+<div class="research-description" markdown="1">
+
 I try to remain faithful to my physics background by asking questions that capture the essence of machine-learning phenomena, and by studying them through sharp analyses of tractable toy models.
+
+</div>
+
 ## Publications
 
 {% include profile-publications.html %}

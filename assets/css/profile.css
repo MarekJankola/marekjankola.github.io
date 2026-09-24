@@ -44,11 +44,12 @@ p { margin: 0 0 1.1rem; }
 .icon-academic { font-family: "Academicons"; font-size: 1rem; }
 .main-content { min-width: 0; }
 .main-content:focus { outline: none; }
-.biography { text-align: justify; text-align-last: left; hyphens: auto; }
+.biography, .research-description { text-align: justify; text-align-last: left; hyphens: auto; }
 h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.22; }
 h1 { margin: 0 0 1.35rem; color: var(--heading); font-size: 2.45rem; letter-spacing: -.025em; }
 h2 { font-size: 1.6rem; color: var(--heading); margin: 2.05rem 0 .72rem; letter-spacing: -.012em; }
 h3 { font-size: 1.075rem; margin: 0 0 .38rem; }
+.research-description { margin-top: 1.2rem; }
 .research-interests { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; padding: 0; margin: .2rem 0 0; gap: .32rem 0; font-size: .95rem; }
 .research-interests li { display: inline-flex; align-items: center; }
 .research-interests li:not(:last-child)::after { content: "\2727"; color: var(--link); font-size: .82rem; margin: 0 .63rem; }
